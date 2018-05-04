@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+table tr th {
+  background: mediumaquamarine;
+  color: teal;
+}
+table tr td {
+  background: beige;
+  color: black;
+}

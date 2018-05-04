@@ -1,0 +1,91 @@
+<h1><%= @msg %></h1>
+<h2>Event</h2>
+<p>
+  <%= @data.event %>
+</p>
+<p>
+  <% idoltype = {'idol' =>'プロデュースアイドル（ガチャ非依存）',
+                 'pidol'=>'プロデュースアイドル（ガチャ依存）',
+                 'sidol'=>'サポートアイドル' } %>
+</p>
+<h2>Idol</h2>
+<p>
+  <%= idoltype[@data.idoltype] %>
+</p>
+<p>
+  <% @idollist.each do |i| %>
+    <% if (i.name == @data.idol) then %>
+    <%= i.name %>
+    <% end %>
+  <% end %>
+</p>
+<h2>Choice</h2>
+<%= form_for(@choice, url: {action: 'update_choice', id: @choiceid}) do |f| %>
+<table>
+  <tr>
+    <th>Choice</th>
+    <th>Vocal </th>
+    <th>Dance </th>
+    <th>Visual</th>
+    <th>Mental</th>
+    <th>SP    </th>
+  </tr>
+  <% @data.choices.each do |obj| %>
+  <tr>
+    <% if obj.choiceid.to_i == @choiceid.to_i then %>
+      <% @choice.event = @data.eventid %>
+      <% @choice.id = @choiceid %>
+      <% @choice.name = obj.choice %>
+      <% @choice.Vo = obj.Vo %>
+      <% @choice.Da = obj.Da %>
+      <% @choice.Vi = obj.Vi %>
+      <% @choice.Me = obj.Me %>
+      <% @choice.Sp = obj.Sp %>
+
+      <%= f.hidden_field :event %>
+      <%= f.hidden_field :id %>
+      <td><%= f.text_field   :name %></td>
+      <td><%= f.number_field :Vo, :max => 99, :min => -99 %></td>
+      <td><%= f.number_field :Da, :max => 99, :min => -99 %></td>
+      <td><%= f.number_field :Vi, :max => 99, :min => -99 %></td>
+      <td><%= f.number_field :Me, :max => 99, :min => -99 %></td>
+      <td><%= f.number_field :Sp, :max => 99, :min => -99 %></td>
+    <% else %>
+      <th><%= obj.choice %></th>
+      <th><%= obj.Vo %></th>
+      <th><%= obj.Da %></th>
+      <th><%= obj.Vi %></th>
+      <th><%= obj.Me %></th>
+      <th><%= obj.Sp %></th>
+    <% end %>
+  </tr>
+  <% end %>
+  <% if @choiceid == '0' then %>
+  <tr>
+    <% @choice.event = @data.eventid %>
+    <% @choice.id = @choiceid %>
+    <% @choice.name = '' %>
+    <% @choice.Vo = 0 %>
+    <% @choice.Da = 0 %>
+    <% @choice.Vi = 0 %>
+    <% @choice.Me = 0 %>
+    <% @choice.Sp = 0 %>
+    <%= f.hidden_field :event %>
+    <%= f.hidden_field :id %>
+    <td><%= f.text_field   :name %></td>
+    <td><%= f.number_field :Vo, :max => 99, :min => -99 %></td>
+    <td><%= f.number_field :Da, :max => 99, :min => -99 %></td>
+    <td><%= f.number_field :Vi, :max => 99, :min => -99 %></td>
+    <td><%= f.number_field :Me, :max => 99, :min => -99 %></td>
+    <td><%= f.number_field :Sp, :max => 99, :min => -99 %></td>
+  </tr>
+  <% end %>
+</table>
+<%= f.submit "choiceを更新" %>
+<% end %>
+<p>
+<a href="/event_list">リストに戻る（変更破棄）</a>
+</p>
+<p>
+<a href="/event_list/delete_choice/<%= @choiceid %>">choiceを削除する</a>
+</p>

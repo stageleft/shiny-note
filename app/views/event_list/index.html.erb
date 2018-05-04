@@ -1,0 +1,49 @@
+<h1><%= @msg %></h1>
+<table>
+  <tr>
+    <th>Idol</th>
+    <th>Event</th>
+    <th>Choice</th>
+    <th>Vocal </th>
+    <th>Dance </th>
+    <th>Visual</th>
+    <th>Mental</th>
+    <th>SP    </th>
+  </tr>
+  <% @data.each do |object| %>
+  <%   object.choices.each do |obj| %>
+  <tr>
+    <td><%= object.idol %></td>
+    <td><a href=/event_list/edit_event/<%= object.eventid %>><%= object.event %></a></td>
+    <td><a href=/event_list/edit_choice/<%= obj.choiceid %>?eventid=<%= object.eventid %>><%= obj.choice %></a></td>
+    <td><%= obj.Vo %></td>
+    <td><%= obj.Da %></td>
+    <td><%= obj.Vi %></td>
+    <td><%= obj.Me %></td>
+    <td><%= obj.Sp %></td>
+  </tr>
+  <%   end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><a href=/event_list/edit_choice/0?eventid=<%= object.eventid %>>新規選択肢を追加</a></td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+  </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td><a href=/event_list/edit_event/0>新規イベントを追加</a></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<p>
+</p>
