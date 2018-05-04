@@ -2,7 +2,8 @@ class IndexController < ApplicationController
   def index
     # Hash: url -> text
     sheets = { 'event-sheet' =>'イベント発生管理' }
-    master = { 'produce-idol'=>'プロデュースアイドル管理',
+    master = { 'base-283idol'=>'アイドル基本管理',
+               'produce-idol'=>'プロデュースアイドル管理',
                'support-idol'=>'サポートアイドル管理', }
 
     # page header
