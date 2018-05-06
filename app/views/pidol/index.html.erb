@@ -1,20 +1,18 @@
 <h1><%= @msg %></h1>
 <table>
   <tr>
-    <th>Idol</th>
-    <th>Prefix</th>
-    <th>Real Name</th>
+    <th>Idol Name</th>
+    <th>Produce-Idol Name</th>
   </tr>
   <% @data.each do |obj| %>
   <tr>
-    <td><%= obj.name %></td>
-    <td><a href=/pidol/edit/<%= obj.pidolid %>><%= obj.prefix %></a></td>
     <td><%= obj.realname %></td>
+    <td><a href=/pidol/edit/<%= obj.pidolid %>><%= obj.name %></a></td>
   </tr>
   <% end %>
   <tr>
     <td></td>
     <td><a href=/pidol/edit/0>(新規プロデュースアイドルを追加)</a></td>
-    <td></td>
   </tr>
 </table>
+<p><a href=/>home</a></p>

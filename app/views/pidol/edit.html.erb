@@ -8,10 +8,14 @@
 <p>プロデュースアイドル（ガチャ依存）</p>
 <p>
   <% idolname = Hash.new %>
+  <% selectedidol = Hash.new %>
   <% @idollist.each do |i| %>
     <% idolname[i.name] = i.id %>
+    <% if (i.id == @data.idolid) then %>
+    <%   selectedidol[:selected] = i.id %>
+    <% end %>
   <% end %>
-  <%= f.select :modelid, idolname %>
+  <%= f.select :modelid, idolname, selectedidol %>
 </p>
 <p>
   <%= f.submit "プロデュースアイドルを登録・更新してリストに戻る" %>
