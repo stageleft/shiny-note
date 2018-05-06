@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   post 'event_list/update_choice', to: 'event_list#update_choice'
   get 'event_list/delete_choice/:id', to: 'event_list#delete_choice'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'index/index'
+  get 'index', to: 'index#index'
+  get '', to: 'index#index'
 end
