@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: 1
+  name: 
+  Vo: 1
+  Da: 1
+  Vi: 1
+  Me: 1
+  Sp: 1
+
+two:
+  event: 1
+  name: 
+  Vo: 1
+  Da: 1
+  Vi: 1
+  Me: 1
+  Sp: 1
