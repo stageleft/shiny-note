@@ -1,0 +1,2 @@
+class Pidol < ApplicationRecord
+end
