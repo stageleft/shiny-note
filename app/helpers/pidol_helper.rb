@@ -1,0 +1,2 @@
+module PidolHelper
+end
