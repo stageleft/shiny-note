@@ -1,10 +1,10 @@
 class IndexController < ApplicationController
   def index
     # Hash: url -> text
-    sheets = { 'event-sheet' =>'イベント発生管理' }
-    master = { 'base-283idol'=>'アイドル基本管理',
-               'produce-idol'=>'プロデュースアイドル管理',
-               'support-idol'=>'サポートアイドル管理', }
+    sheets = { 'event_sheet' =>'イベント発生管理' }
+    master = { 'event_list'=>'イベントマスタ管理',
+               'pidol'=>'プロデュースアイドル管理',
+               'sidol'=>'サポートアイドル管理', }
 
     # page header
     page = String.new;
