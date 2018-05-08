@@ -1,0 +1,15 @@
+<% idolname = Hash.new %>
+<% selectedidol = Hash.new %>
+<% list.each do |i| %>
+  <% if realname == nil then %>
+  <%   iname = i.name %>
+  <% else %>
+  <%   iid = realname.find(){|r| r.id == i.modelid} %>
+  <%   iname = "【#{i.name}】#{iid.name}" %>
+  <% end %>
+  <% idolname[iname] = i.id %>
+  <% if (i.id == selected) then %>
+  <%   selectedidol[:selected] = i.id %>
+  <% end %>
+<% end %>
+<%= form.select :modelid, idolname, selectedidol %>

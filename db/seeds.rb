@@ -32,6 +32,7 @@ Choice.create(name: 'じゃあ……俺にも掃除させてくれ',         Vo:
 Choice.create(name: 'そういうところは、霧子の魅力だと思うぞ', Vo: 20, Da:  0, Vi:  0, Me: 5, Sp: 10, event: 1)
 Choice.create(name: 'それは、霧子のためにもなるって思うぞ',   Vo:  0, Da: 20, Vi:  0, Me: 5, Sp: 10, event: 1)
 
-EventList.create(name: 'どなたですか', model: 'idol', modelid: 5) # 正しくはpidolだがデバッグ用なので。
+Pidol.create(name: '伝・伝・心・音', modelid: 5)
+EventList.create(name: 'どなたですか', model: 'pidol', modelid: 1)
 Choice.create(name: '',   Vo: 20, Da:  0, Vi:  0, Me: 5, Sp: 10, event: 2)
 
