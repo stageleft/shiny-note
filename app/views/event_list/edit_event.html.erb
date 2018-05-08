@@ -5,31 +5,29 @@
   <% @event.name = @data.event %>
   <%= f.text_field   :name %>
 </p>
-<p>
+<script>
+var showIdolList = function(){
+  var l = ['idol','pidol']
+  t=document.getElementById('event_list_model').selectedOptions[0].value;
+  console.log(t);
+  window.location.href='/event_list/edit_event/<%= @data.eventid %>?model='+t;
+}
+</script>
+<p onChange="showIdolList()">
   <% idoltype = {'プロデュースアイドル（ガチャ非依存）': 'idol',
                  'プロデュースアイドル（ガチャ依存）': 'pidol',
                  'サポートアイドル': 'sidol' } %>
-  <% if @data.idoltype == 'idol' then %>
   <%= f.select :model, idoltype,
-               :selected => 'idol',
-               :disabled => ['pidol','sidol']
+               :selected => @data.idoltype,
+               :disabled => ['sidol']
    %>
-  <% else %>
-  <%= f.select :model, idoltype,
-               :disabled => ['pidol','sidol']
-   %>
-  <% end %>
-</p>
+</a></p>
 <p>
-  <% idolname = Hash.new %>
-  <% selectedidol = Hash.new %>
-  <% @idollist.each do |i| %>
-    <% idolname[i.name] = i.id %>
-    <% if (i.name == @data.idol) then %>
-    <%   selectedidol[:selected] = i.id %>
-    <% end %>
-  <% end %>
-  <%= f.select :modelid, idolname, selectedidol %>
+  <%=  render :partial => 'layouts/idol_list',
+              :locals => { :list => @idollist,
+                           :realname => @realname,
+                           :selected => @data.idolid,
+                           :form => f } %>
 </p>
 <p>
   <%= f.submit "eventを更新してリストに戻る" %>

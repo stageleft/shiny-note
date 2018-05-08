@@ -39,6 +39,19 @@ class EventListController < ApplicationController
           self.idoltype = ev.model
           self.idolid   = ido.id
           self.idol     = ido.name
+        elsif 'pidol' == ev.model then
+          pido = Pidol.all.find(){|i| i.id == ev.modelid}
+          if pido != nil then
+            ido  = Idol.all.find(){|i| i.id == pido.modelid}
+            self.idoltype = ev.model
+            self.idolid   = pido.id
+            self.idol     = "【#{pido.name}】#{ido.name}"
+          else
+            ido = Idol.all.find(){|i| i.id == ev.modelid}
+            self.idoltype = ev.model
+            self.idolid   = ido.id
+            self.idol     = ido.name
+          end
         end
 
         self.choices = Array.new
@@ -77,7 +90,16 @@ class EventListController < ApplicationController
   def edit_event
     @msg = 'イベント編集画面です'
     @data = ExpandedEvent.new(params[:id])
-    @idollist = Idol.all
+    if params[:model] != nil
+      @data.idoltype = params[:model]
+    end
+    if @data.idoltype == 'pidol' then
+      @idollist = Pidol.all
+      @realname = Idol.all
+    else
+      @idollist = Idol.all
+      @realname = nil
+    end
 
     # form_for objects
     @event  = EventList.new
@@ -85,7 +107,6 @@ class EventListController < ApplicationController
   def edit_choice
     @msg = 'choice編集画面です'
     @data = ExpandedEvent.new(params[:eventid])
-    @idollist = Idol.all
 
     # form_for objects
     @choiceid = params[:id]
