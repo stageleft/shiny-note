@@ -107,8 +107,6 @@ class EventListController < ApplicationController
   def edit_choice
     @msg = 'choice編集画面です'
     @data = ExpandedEvent.new(params[:eventid])
-    @idollist = Idol.all
-    @pidollist = Pidol.all
 
     # form_for objects
     @choiceid = params[:id]

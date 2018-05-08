@@ -10,14 +10,7 @@
 </p>
 <h2>Idol</h2>
 <p>
-  <%= idoltype[@data.idoltype] %>
-</p>
-<p>
-  <% @idollist.each do |i| %>
-    <% if (i.name == @data.idol) then %>
-    <%= i.name %>
-    <% end %>
-  <% end %>
+  <%= @data.idol %>
 </p>
 <h2>Choice</h2>
 <%= form_for(@choice, url: {action: 'update_choice', id: @choiceid}) do |f| %>
