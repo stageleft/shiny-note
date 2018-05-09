@@ -14,8 +14,8 @@ var showIdolList = function(){
 }
 </script>
 <p onChange="showIdolList()">
-  <% idoltype = {'プロデュースアイドル（ガチャ非依存）': 'idol',
-                 'プロデュースアイドル（ガチャ依存）': 'pidol',
+  <% idoltype = {'アイドル': 'idol',
+                 'プロデュースアイドル': 'pidol',
                  'サポートアイドル': 'sidol' } %>
   <%= f.select :model, idoltype,
                :selected => @data.idoltype

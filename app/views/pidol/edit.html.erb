@@ -1,11 +1,12 @@
 <h1><%= @msg %></h1>
 <%= form_for(@pidol, url: {action: 'update', id: @data.pidolid}) do |f| %>
 <h2>Idol</h2>
+<p>プロデュースアイドル肩書</p>
 <p>
   <% @pidol.name = @data.prefix %>
   <%= f.text_field :name %>
 </p>
-<p>プロデュースアイドル（ガチャ依存）</p>
+<p>アイドル選択</p>
 <p>
   <% idolname = Hash.new %>
   <% selectedidol = Hash.new %>
