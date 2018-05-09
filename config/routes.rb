@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get  'sidol', to: 'sidol#index'
+  get  'sidol/index'
+  get  'sidol/edit/:id',   to: 'sidol#edit'
+  post 'sidol/update/:id', to: 'sidol#update'
+  get  'sidol/delete/:id', to: 'sidol#delete'
+
   get  'pidol', to: 'pidol#index'
   get  'pidol/index'
   get  'pidol/edit/:id',   to: 'pidol#edit'

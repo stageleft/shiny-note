@@ -1,0 +1,18 @@
+<h1><%= @msg %></h1>
+<table>
+  <tr>
+    <th>Idol Name</th>
+    <th>Support-Idol Name</th>
+  </tr>
+  <% @data.each do |obj| %>
+  <tr>
+    <td><%= obj.realname %></td>
+    <td><a href=/sidol/edit/<%= obj.sidolid %>><%= obj.name %></a></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td><a href=/sidol/edit/0>(新規サポートアイドルを追加)</a></td>
+  </tr>
+</table>
+<p><a href=/>home</a></p>

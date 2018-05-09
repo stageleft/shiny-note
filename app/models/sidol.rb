@@ -1,0 +1,2 @@
+class Sidol < ApplicationRecord
+end

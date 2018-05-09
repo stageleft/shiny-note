@@ -20,7 +20,7 @@ class PidolController < ApplicationController
     end
   end
   def index
-    @msg      = 'index'
+    @msg      = 'list of produce idol'
     @prefix   = Pidol.all
     @idolname = Idol.all
 
@@ -30,7 +30,7 @@ class PidolController < ApplicationController
     }
   end
   def edit
-    @msg      = 'edit'
+    @msg      = 'edit produce idol'
     @data     = PidolElement.new(params[:id])
     @idollist = Idol.all
     @pidol    = Pidol.new

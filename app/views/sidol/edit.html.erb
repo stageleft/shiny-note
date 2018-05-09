@@ -1,0 +1,29 @@
+<h1><%= @msg %></h1>
+<%= form_for(@sidol, url: {action: 'update', id: @data.sidolid}) do |f| %>
+<h2>Idol</h2>
+<p>
+  <% @sidol.name = @data.prefix %>
+  <%= f.text_field :name %>
+</p>
+<p>プロデュースアイドル（ガチャ依存）</p>
+<p>
+  <% idolname = Hash.new %>
+  <% selectedidol = Hash.new %>
+  <% @idollist.each do |i| %>
+    <% idolname[i.name] = i.id %>
+    <% if (i.id == @data.idolid) then %>
+    <%   selectedidol[:selected] = i.id %>
+    <% end %>
+  <% end %>
+  <%= f.select :modelid, idolname, selectedidol %>
+</p>
+<p>
+  <%= f.submit "プロデュースアイドルを登録・更新してリストに戻る" %>
+</p>
+<% end %>
+<p>
+  <a href="/sidol">リストに戻る（変更破棄）</a>
+</p>
+<p>
+  <a href="/sidol/delete/<%= @data.sidolid %>">delete support idol</a>
+</p>

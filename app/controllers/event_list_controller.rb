@@ -34,23 +34,24 @@ class EventListController < ApplicationController
         self.eventid = ev.id
         self.event   = ev.name
 
-        if 'idol' == ev.model then
-          ido = Idol.all.find(){|i| i.id == ev.modelid}
-          self.idoltype = ev.model
-          self.idolid   = ido.id
-          self.idol     = ido.name
-        elsif 'pidol' == ev.model then
+        # set default : if 'idol' == ev.model
+        ido = Idol.all.find(){|i| i.id == ev.modelid}
+        self.idoltype = ev.model
+        self.idolid   = ido.id
+        self.idol     = ido.name
+        if 'pidol' == ev.model then
           pido = Pidol.all.find(){|i| i.id == ev.modelid}
           if pido != nil then
             ido  = Idol.all.find(){|i| i.id == pido.modelid}
-            self.idoltype = ev.model
             self.idolid   = pido.id
             self.idol     = "【#{pido.name}】#{ido.name}"
-          else
-            ido = Idol.all.find(){|i| i.id == ev.modelid}
-            self.idoltype = ev.model
-            self.idolid   = ido.id
-            self.idol     = ido.name
+          end
+        elsif 'sidol' == ev.model then
+          sido = Sidol.all.find(){|i| i.id == ev.modelid}
+          if sido != nil then
+            ido  = Idol.all.find(){|i| i.id == sido.modelid}
+            self.idolid   = sido.id
+            self.idol     = "【#{sido.name}】#{ido.name}"
           end
         end
 
@@ -95,6 +96,9 @@ class EventListController < ApplicationController
     end
     if @data.idoltype == 'pidol' then
       @idollist = Pidol.all
+      @realname = Idol.all
+    elsif @data.idoltype == 'sidol' then
+      @idollist = Sidol.all
       @realname = Idol.all
     else
       @idollist = Idol.all
