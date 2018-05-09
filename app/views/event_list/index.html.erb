@@ -11,14 +11,18 @@
     <th>SP    </th>
   </tr>
   <% @data.each do |object| %>
+  <%   new_choice_required = false %>
   <%   object.choices.each do |obj| %>
   <tr>
     <td><%= object.idol %></td>
     <td><a href=/event_list/edit_event/<%= object.eventid %>><%= object.event %></a></td>
     <%   if obj.choice.length > 0 then %>
     <td><a href=/event_list/edit_choice/<%= obj.choiceid %>?eventid=<%= object.eventid %>><%= obj.choice %></a></td>
-    <%   else %>
+    <%   elsif obj.choiceid > 0 then %>
     <td><a href=/event_list/edit_choice/<%= obj.choiceid %>?eventid=<%= object.eventid %>>(選択肢なし) <%= obj.choice %></a></td>
+    <%   else %>
+    <td><a href=/event_list/edit_choice/0?eventid=<%= object.eventid %>>★新規選択肢を追加★</a></td>
+    <%     new_choice_required = true %>
     <%   end %>
     <td><%= obj.Vo %></td>
     <td><%= obj.Da %></td>
@@ -27,6 +31,7 @@
     <td><%= obj.Sp %></td>
   </tr>
   <%   end %>
+  <%   if new_choice_required == false then %>
   <tr>
     <td></td>
     <td></td>
@@ -37,6 +42,7 @@
     <td>0</td>
     <td>0</td>
   </tr>
+  <%   end %>
   <% end %>
   <tr>
     <td></td>
