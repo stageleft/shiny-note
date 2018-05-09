@@ -1,11 +1,12 @@
 <h1><%= @msg %></h1>
 <%= form_for(@sidol, url: {action: 'update', id: @data.sidolid}) do |f| %>
 <h2>Idol</h2>
+<p>サポートアイドル肩書</p>
 <p>
   <% @sidol.name = @data.prefix %>
   <%= f.text_field :name %>
 </p>
-<p>プロデュースアイドル（ガチャ依存）</p>
+<p>アイドル選択</p>
 <p>
   <% idolname = Hash.new %>
   <% selectedidol = Hash.new %>
@@ -18,7 +19,7 @@
   <%= f.select :modelid, idolname, selectedidol %>
 </p>
 <p>
-  <%= f.submit "プロデュースアイドルを登録・更新してリストに戻る" %>
+  <%= f.submit "サポートアイドルを登録・更新してリストに戻る" %>
 </p>
 <% end %>
 <p>
