@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'event_sheet', to: 'event_sheet#index'
+  get 'event_sheet/index'
+
   get  'sidol', to: 'sidol#index'
   get  'sidol/index'
   get  'sidol/edit/:id',   to: 'sidol#edit'

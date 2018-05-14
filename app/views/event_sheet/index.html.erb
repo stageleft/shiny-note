@@ -1,0 +1,229 @@
+<h1>EventSheet</h1>
+<script>
+var updateUnitList = function(){
+  update_uri = '/event_sheet/';
+
+  update_uri += '?pi=' + document.getElementById('pi').selectedOptions[0].value;
+  var a = ['pp',
+           's1i','s1s',
+           's2i','s2s',
+           's3i','s3s',
+           's4i','s4s',
+           'gi', 'gs'];
+
+  a.forEach(function(e) {
+    if (document.getElementById(e).selectedOptions.length >= 1) {
+      update_uri += '&'+e+'='+document.getElementById(e).selectedOptions[0].value;
+    }
+  });
+
+  window.location.href=update_uri;
+}
+</script>
+
+<h2>UnitList</h2>
+<%= form_tag('index') do %>
+<table>
+  <tr>
+    <th>Position</th>
+    <th>Idol Name</th>
+    <th>Produce/Support Idol Name</th>
+  </tr>
+  <tr>
+    <th>Main</th>
+    <td>
+    <%= select_tag "pi",
+                   options_from_collection_for_select(@lidol,
+                                                      :id, :name,
+                                                      @u.pi),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+    <td>
+    <%= select_tag "pp",
+                   options_from_collection_for_select(@u.pp,
+                                                      :id, :name,
+                                                      @u.ppi),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+  </tr>
+  <tr>
+    <th>Member-1</th>
+    <td>
+    <%= select_tag "s1i",
+                   options_from_collection_for_select(@lidol,
+                                                      :id, :name,
+                                                      @u.s1i),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+    <td>
+    <%= select_tag "s1s",
+                   options_from_collection_for_select(@u.s1s,
+                                                      :id, :name,
+                                                      @u.s1si),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+  </tr>
+  <tr>
+    <th>Member-2</th>
+    <td>
+    <%= select_tag "s2i",
+                   options_from_collection_for_select(@lidol,
+                                                      :id, :name,
+                                                      @u.s2i),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+    <td>
+    <%= select_tag "s2s",
+                   options_from_collection_for_select(@u.s2s,
+                                                      :id, :name,
+                                                      @u.s2si),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+  </tr>
+  <tr>
+    <th>Member-3</th>
+    <td>
+    <%= select_tag "s3i",
+                   options_from_collection_for_select(@lidol,
+                                                      :id, :name,
+                                                      @u.s3i),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+    <td>
+    <%= select_tag "s3s",
+                   options_from_collection_for_select(@u.s3s,
+                                                      :id, :name,
+                                                      @u.s3si),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+  </tr>
+  <tr>
+    <th>Member-4</th>
+    <td>
+    <%= select_tag "s4i",
+                   options_from_collection_for_select(@lidol,
+                                                      :id, :name,
+                                                      @u.s4i),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+    <td>
+    <%= select_tag "s4s",
+                   options_from_collection_for_select(@u.s4s,
+                                                      :id, :name,
+                                                      @u.s4si),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+  </tr>
+  <tr>
+    <th>Guest</th>
+    <td>
+    <%= select_tag "gi",
+                   options_from_collection_for_select(@lidol,
+                                                      :id, :name,
+                                                      @u.gi),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+    <td>
+    <%= select_tag "gs",
+                   options_from_collection_for_select(@u.gs,
+                                                      :id, :name,
+                                                      @u.gsi),
+                   {:onChange=>"updateUnitList()"} %>
+    </td>
+  </tr>
+</table>
+<% end %>
+<h2>EventCheckList</h2>
+<script>
+var calcParam = function(param, idlist){
+  var a = 0;
+  var p = 0;
+  idlist.forEach(function(e) {
+    if (document.getElementById(e[0]).checked == true) {
+      a += parseInt(document.getElementById(param+'_'+e[0]).innerText);
+      idlist.forEach(function(f) {if ((e[1] == f[1]) && (e[2] != f[2])) {
+        p -= parseInt(document.getElementById(param+'_'+f[0]).innerText);
+      }});
+    } else {
+      p += parseInt(document.getElementById(param+'_'+e[0]).innerText);
+    };
+  });
+  document.getElementById(param+'_a').innerText = String(a);
+  document.getElementById(param+'_p').innerText = String(p);
+}
+var updateSelection = function(){
+  var p = [
+  <% @eventlist.each do |e| %>
+  <%   @choicelist.each do |c| %>
+  <%     if c.event == e.id then %>
+          ['<%="#{e.id}_#{c.id}"%>','<%="#{e.id}"%>','<%="#{c.id}"%>'],
+  <%     end %>
+  <%   end %>
+  <% end %>
+  ];
+
+  calcParam('Vo', p);
+  calcParam('Da', p);
+  calcParam('Vi', p);
+  calcParam('Me', p);
+  calcParam('Sp', p);
+}
+window.onload = function(){updateSelection()};
+</script>
+<table>
+  <tr>
+    <th>Event</th>
+    <th>Check</th>
+    <th>Choice</th>
+    <th>Vocal </th>
+    <th>Dance </th>
+    <th>Visual</th>
+    <th>Mental</th>
+    <th>SP    </th>
+  </tr>
+  <% @eventlist.each do |e| %>
+  <%   @choicelist.each do |c| %>
+  <%     if c.event == e.id then %>
+  <tr>
+    <td><%= e.name %></td>
+    <td onChange="updateSelection()"><%= check_box_tag "#{e.id}_#{c.id}" %></td>
+    <td><%= c.name %></td>
+    <td id="<%= "Vo_#{e.id}_#{c.id}"%>"><%= c.Vo %></td>
+    <td id="<%= "Da_#{e.id}_#{c.id}"%>"><%= c.Da %></td>
+    <td id="<%= "Vi_#{e.id}_#{c.id}"%>"><%= c.Vi %></td>
+    <td id="<%= "Me_#{e.id}_#{c.id}"%>"><%= c.Me %></td>
+    <td id="<%= "Sp_#{e.id}_#{c.id}"%>"><%= c.Sp %></td>
+  </tr>
+  <%     end %>
+  <%   end %>
+  <% end %>
+</table>
+<h2>informative: Achivement and Potential</h2>
+<table>
+  <tr>
+    <th></th>
+    <th>Vocal </th>
+    <th>Dance </th>
+    <th>Visual</th>
+    <th>Mental</th>
+    <th>SP    </th>
+  </tr>
+  <tr>
+    <th>Acheivement</th>
+    <td id="Vo_a"></td>
+    <td id="Da_a"></td>
+    <td id="Vi_a"></td>
+    <td id="Me_a"></td>
+    <td id="Sp_a"></td>
+  </tr>
+  <tr>
+    <th>Potential</th>
+    <td id="Vo_p"></td>
+    <td id="Da_p"></td>
+    <td id="Vi_p"></td>
+    <td id="Me_p"></td>
+    <td id="Sp_p"></td>
+  </tr>
+</table>
+
+<p><a href=/>戻る</a></p>
