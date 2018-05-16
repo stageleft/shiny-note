@@ -9,7 +9,6 @@
 var showIdolList = function(){
   var l = ['idol','pidol','sidol']
   t=document.getElementById('event_list_model').selectedOptions[0].value;
-  console.log(t);
   window.location.href='/event_list/edit_event/<%= @data.eventid %>?model='+t;
 }
 </script>
@@ -20,7 +19,7 @@ var showIdolList = function(){
   <%= f.select :model, idoltype,
                :selected => @data.idoltype
    %>
-</a></p>
+</p>
 <p>
   <%=  render :partial => 'layouts/idol_list',
               :locals => { :list => @idollist,
