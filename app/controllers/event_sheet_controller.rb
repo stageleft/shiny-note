@@ -58,7 +58,5 @@ class EventSheetController < ApplicationController
       (e.model == 'sidol' && e.modelid.to_s == @u.gsi)
     }
     @choicelist = Choice.all
-p @eventlist
-p @choicelist
   end
 end

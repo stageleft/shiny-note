@@ -31,104 +31,92 @@ var updateUnitList = function(){
   </tr>
   <tr>
     <th>Main</th>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "pi",
                    options_from_collection_for_select(@lidol,
                                                       :id, :name,
-                                                      @u.pi),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.pi) %>
     </td>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "pp",
                    options_from_collection_for_select(@u.pp,
                                                       :id, :name,
-                                                      @u.ppi),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.ppi) %>
     </td>
   </tr>
   <tr>
     <th>Member-1</th>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s1i",
                    options_from_collection_for_select(@lidol,
                                                       :id, :name,
-                                                      @u.s1i),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s1i) %>
     </td>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s1s",
                    options_from_collection_for_select(@u.s1s,
                                                       :id, :name,
-                                                      @u.s1si),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s1si) %>
     </td>
   </tr>
   <tr>
     <th>Member-2</th>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s2i",
                    options_from_collection_for_select(@lidol,
                                                       :id, :name,
-                                                      @u.s2i),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s2i) %>
     </td>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s2s",
                    options_from_collection_for_select(@u.s2s,
                                                       :id, :name,
-                                                      @u.s2si),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s2si) %>
     </td>
   </tr>
   <tr>
     <th>Member-3</th>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s3i",
                    options_from_collection_for_select(@lidol,
                                                       :id, :name,
-                                                      @u.s3i),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s3i) %>
     </td>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s3s",
                    options_from_collection_for_select(@u.s3s,
                                                       :id, :name,
-                                                      @u.s3si),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s3si) %>
     </td>
   </tr>
   <tr>
     <th>Member-4</th>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s4i",
                    options_from_collection_for_select(@lidol,
                                                       :id, :name,
-                                                      @u.s4i),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s4i) %>
     </td>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "s4s",
                    options_from_collection_for_select(@u.s4s,
                                                       :id, :name,
-                                                      @u.s4si),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.s4si) %>
     </td>
   </tr>
   <tr>
     <th>Guest</th>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "gi",
                    options_from_collection_for_select(@lidol,
                                                       :id, :name,
-                                                      @u.gi),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.gi) %>
     </td>
-    <td>
+    <td onChange="updateUnitList()">
     <%= select_tag "gs",
                    options_from_collection_for_select(@u.gs,
                                                       :id, :name,
-                                                      @u.gsi),
-                   {:onChange=>"updateUnitList()"} %>
+                                                      @u.gsi) %>
     </td>
   </tr>
 </table>
