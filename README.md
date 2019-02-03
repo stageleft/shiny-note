@@ -2,6 +2,8 @@
 
 アイドルマスターシャイニーカラーズ攻略支援ツール「はづきのシャイニーノート」構築プロジェクト
 
+※アイドルマスターシャイニーカラーズに「秘密のメモ帳」アイテムが実装されたことを受けて、本プロジェクトは凍結します。
+
 # get running (from README of Ruby on Rails)
 
 This README would normally document whatever steps are necessary to get the
